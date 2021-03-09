@@ -14,23 +14,23 @@ public class CategoryServiceREST {
         this.repository = repository;
     }
 
-    @GetMapping("/categories")
+    @GetMapping("/api/categories")
     List<Category> all() {
         return repository.findAll();
     }
 
-    @PostMapping("/categories")
+    @PostMapping("/api/categories")
     Category newEntity(@RequestBody Category newEntity) {
         return repository.save(newEntity);
     }
 
-    @GetMapping("/categories/{id}")
+    @GetMapping("/api/categories/{id}")
     Category one(@PathVariable Long id) {
         return repository.findById(id).
                 orElseThrow();
     }
 
-    @PutMapping("/categories/{id}")
+    @PutMapping("/api/categories/{id}")
     Category replaceEntity(@RequestBody Category newEntity, @PathVariable Long id) {
         return repository.findById(id).
                 map(entity -> {
@@ -43,7 +43,7 @@ public class CategoryServiceREST {
                 });
     }
 
-    @DeleteMapping("/categories/{id}")
+    @DeleteMapping("/api/categories/{id}")
     void deleteEntity(@PathVariable Long id) {
         repository.deleteById(id);
     }
