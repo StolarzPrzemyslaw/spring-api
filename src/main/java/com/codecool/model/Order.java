@@ -14,7 +14,7 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate date;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "order")
     private Set<ProductBasket> productBaskets;
 
     protected Order() {}
