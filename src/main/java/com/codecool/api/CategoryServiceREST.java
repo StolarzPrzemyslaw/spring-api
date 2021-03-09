@@ -43,4 +43,8 @@ public class CategoryServiceREST {
                 });
     }
 
+    @DeleteMapping("/categories/{id}")
+    void deleteEntity(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }
