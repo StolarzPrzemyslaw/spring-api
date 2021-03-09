@@ -1,5 +1,6 @@
 package com.codecool.api;
 
+import com.codecool.exception.EntityNotFoundException;
 import com.codecool.model.Category;
 import com.codecool.repository.CategoryRepository;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class CategoryServiceREST {
     @GetMapping("/api/categories/{id}")
     Category one(@PathVariable Long id) {
         return repository.findById(id).
-                orElseThrow();
+                orElseThrow(() -> new EntityNotFoundException(Category.class, id));
     }
 
     @PutMapping("/api/categories/{id}")
