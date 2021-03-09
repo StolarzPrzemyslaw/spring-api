@@ -30,4 +30,17 @@ public class CategoryServiceREST {
                 orElseThrow();
     }
 
+    @PutMapping("/categories/{id}")
+    Category replaceEntity(@RequestBody Category newEntity, @PathVariable Long id) {
+        return repository.findById(id).
+                map(entity -> {
+                    entity.setName(newEntity.getName());
+                    return repository.save(entity);
+                }).
+                orElseGet(() -> {
+                    newEntity.setId(id);
+                    return repository.save(newEntity);
+                });
+    }
+
 }
