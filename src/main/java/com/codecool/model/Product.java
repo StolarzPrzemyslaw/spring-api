@@ -2,6 +2,7 @@ package com.codecool.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -19,6 +20,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductBasket> productBaskets;
 
     protected Product() {}
 
@@ -58,6 +62,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<ProductBasket> getProductBaskets() {
+        return productBaskets;
+    }
+
+    public void setProductBaskets(Set<ProductBasket> productBaskets) {
+        this.productBaskets = productBaskets;
     }
 
     @Override
