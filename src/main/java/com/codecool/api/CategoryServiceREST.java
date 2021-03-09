@@ -23,4 +23,11 @@ public class CategoryServiceREST {
     Category newEntity(@RequestBody Category newEntity) {
         return repository.save(newEntity);
     }
+
+    @GetMapping("/categories/{id}")
+    Category one(@PathVariable Long id) {
+        return repository.findById(id).
+                orElseThrow();
+    }
+
 }
