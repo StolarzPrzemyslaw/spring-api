@@ -1,52 +1,41 @@
 package com.codecool.api;
 
-import com.codecool.exception.EntityNotFoundException;
 import com.codecool.model.Product;
-import com.codecool.repository.ProductRepository;
+import com.codecool.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class ProductServiceREST {
+    private final ProductService productService;
 
-    private final ProductRepository repository;
-
-    public ProductServiceREST(ProductRepository repository) { this.repository = repository; }
+    public ProductServiceREST(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/api/product")
     List<Product> all() {
-        return repository.findAll();
+        return productService.readAll();
     }
 
     @PostMapping("/api/product")
     Product newEntity(@RequestBody Product newEntity) {
-        return repository.save(newEntity);
+        return productService.create(newEntity);
     }
 
     @GetMapping("/api/product/{id}")
     Product one(@PathVariable Long id) {
-        return repository.findById(id).
-                orElseThrow(() -> new EntityNotFoundException(Product.class, id));
+        return productService.read(id);
     }
 
     @PutMapping("/api/product/{id}")
     Product replaceEntity(@RequestBody Product newEntity, @PathVariable Long id) {
-        return repository.findById(id).
-                map(entity -> {
-                    entity.setName(newEntity.getName());
-                    entity.setPrice(newEntity.getPrice());
-                    entity.setCategory(newEntity.getCategory());
-                    return repository.save(entity);
-                }).
-                orElseGet(() -> {
-                    newEntity.setId(id);
-                    return repository.save(newEntity);
-                });
+        return productService.update(newEntity, id);
     }
 
     @DeleteMapping("/api/product/{id}")
     void deleteEntity(@PathVariable Long id) {
-        repository.deleteById(id);
+        productService.delete(id);
     }
 }
