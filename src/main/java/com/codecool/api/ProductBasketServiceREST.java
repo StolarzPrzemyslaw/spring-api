@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ProductBascetServiceREST {
+public class ProductBasketServiceREST {
 
     private final ProductBasketRepository repository;
 
-    public ProductBascetServiceREST(ProductBasketRepository repository) { this.repository = repository; }
+    public ProductBasketServiceREST(ProductBasketRepository repository) { this.repository = repository; }
 
     @GetMapping("/api/productBasket")
     List<ProductBasket> all() {
