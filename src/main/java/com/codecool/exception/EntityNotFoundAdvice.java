@@ -12,7 +12,7 @@ public class EntityNotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String entityNotFoundHandler(EntityNotFoundException exception) {
-        return exception.getMessage();
+    Exception entityNotFoundHandler(EntityNotFoundException exception) {
+        return exception;
     }
 }
