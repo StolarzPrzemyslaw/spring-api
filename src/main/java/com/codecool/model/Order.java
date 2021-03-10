@@ -8,14 +8,14 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "order_date")
     private LocalDate date;
 
-    @OneToMany(mappedBy = "order")
-    private Set<ProductBasket> productBaskets;
+//    @OneToMany(mappedBy = "order")
+//    private Set<ProductBasket> productBaskets;
 
     protected Order() {}
 
@@ -39,13 +39,13 @@ public class Order {
         this.date = date;
     }
 
-    public Set<ProductBasket> getProductBaskets() {
-        return productBaskets;
-    }
-
-    public void setProductBaskets(Set<ProductBasket> productBaskets) {
-        this.productBaskets = productBaskets;
-    }
+//    public Set<ProductBasket> getProductBaskets() {
+//        return productBaskets;
+//    }
+//
+//    public void setProductBaskets(Set<ProductBasket> productBaskets) {
+//        this.productBaskets = productBaskets;
+//    }
 
     @Override
     public String toString() {
