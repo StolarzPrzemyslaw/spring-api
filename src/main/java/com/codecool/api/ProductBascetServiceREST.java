@@ -30,7 +30,7 @@ public class ProductBascetServiceREST {
                 orElseThrow(() -> new EntityNotFoundException(ProductBasket.class, id));
     }
 
-    @PutMapping("/api/productBascet/{id}")
+    @PutMapping("/api/productBasket/{id}")
     ProductBasket replaceEntity(@RequestBody ProductBasket newEntity, @PathVariable Long id) {
         return repository.findById(id).
                 map(entity -> {
@@ -45,7 +45,7 @@ public class ProductBascetServiceREST {
                 });
     }
 
-    @DeleteMapping("/api/productBascet/{id}")
+    @DeleteMapping("/api/productBasket/{id}")
     void deleteEntity(@PathVariable Long id) {
         repository.deleteById(id);
     }
