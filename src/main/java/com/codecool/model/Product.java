@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "name")
@@ -21,8 +21,8 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductBasket> productBaskets;
+//    @OneToMany(mappedBy = "product")
+//    private Set<ProductBasket> productBaskets;
 
     protected Product() {}
 
@@ -64,13 +64,13 @@ public class Product {
         this.category = category;
     }
 
-    public Set<ProductBasket> getProductBaskets() {
-        return productBaskets;
-    }
-
-    public void setProductBaskets(Set<ProductBasket> productBaskets) {
-        this.productBaskets = productBaskets;
-    }
+//    public Set<ProductBasket> getProductBaskets() {
+//        return productBaskets;
+//    }
+//
+//    public void setProductBaskets(Set<ProductBasket> productBaskets) {
+//        this.productBaskets = productBaskets;
+//    }
 
     @Override
     public String toString() {
