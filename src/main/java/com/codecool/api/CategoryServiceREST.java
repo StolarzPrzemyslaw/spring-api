@@ -1,51 +1,41 @@
 package com.codecool.api;
 
-import com.codecool.exception.EntityNotFoundException;
 import com.codecool.model.Category;
-import com.codecool.repository.CategoryRepository;
+import com.codecool.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class CategoryServiceREST {
-    private final CategoryRepository repository;
+    private final CategoryService categoryService;
 
-    public CategoryServiceREST(CategoryRepository repository) {
-        this.repository = repository;
+    public CategoryServiceREST(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/api/categories")
     List<Category> all() {
-        return repository.findAll();
+        return categoryService.readAll();
     }
 
     @PostMapping("/api/categories")
     Category newEntity(@RequestBody Category newEntity) {
-        return repository.save(newEntity);
+        return categoryService.create(newEntity);
     }
 
     @GetMapping("/api/categories/{id}")
     Category one(@PathVariable Long id) {
-        return repository.findById(id).
-                orElseThrow(() -> new EntityNotFoundException(Category.class, id));
+        return categoryService.read(id);
     }
 
     @PutMapping("/api/categories/{id}")
     Category replaceEntity(@RequestBody Category newEntity, @PathVariable Long id) {
-        return repository.findById(id).
-                map(entity -> {
-                    entity.setName(newEntity.getName());
-                    return repository.save(entity);
-                }).
-                orElseGet(() -> {
-                    newEntity.setId(id);
-                    return repository.save(newEntity);
-                });
+        return categoryService.update(newEntity, id);
     }
 
     @DeleteMapping("/api/categories/{id}")
     void deleteEntity(@PathVariable Long id) {
-        repository.deleteById(id);
+        categoryService.delete(id);
     }
 }
