@@ -35,6 +35,8 @@ public class ProductServiceREST {
         return repository.findById(id).
                 map(entity -> {
                     entity.setName(newEntity.getName());
+                    entity.setPrice(newEntity.getPrice());
+                    entity.setCategory(newEntity.getCategory());
                     return repository.save(entity);
                 }).
                 orElseGet(() -> {

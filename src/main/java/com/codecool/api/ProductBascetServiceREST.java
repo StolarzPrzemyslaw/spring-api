@@ -35,6 +35,8 @@ public class ProductBascetServiceREST {
         return repository.findById(id).
                 map(entity -> {
                     entity.setAmount(newEntity.getAmount());
+                    entity.setProduct(newEntity.getProduct());
+                    entity.setOrder(newEntity.getOrder());
                     return repository.save(entity);
                 }).
                 orElseGet(() -> {
