@@ -45,3 +45,15 @@ INSERT INTO product_basket (product_id, amount, order_id) VALUES (17, 1, 5);  --
 INSERT INTO product_basket (product_id, amount, order_id) VALUES (10, 2, 5);  -- id: 11
 INSERT INTO product_basket (product_id, amount, order_id) VALUES (12, 1, 5);  -- id: 12
 INSERT INTO product_basket (product_id, amount, order_id) VALUES (11, 3, 5);  -- id: 13
+
+-- fill tags
+INSERT INTO tags (name) VALUES ('cheap');
+INSERT INTO tags (name) VALUES ('boy');
+INSERT INTO tags (name) VALUES ('present');
+INSERT INTO tags (name) VALUES ('girl');
+
+-- fill product_tags
+INSERT INTO product_tags (product_id, tag_id) VALUES (1, 4);
+INSERT INTO product_tags (product_id, tag_id) VALUES (1, 2);
+INSERT INTO product_tags (product_id, tag_id) VALUES (2, 1);
+INSERT INTO product_tags (product_id, tag_id) VALUES (2, 3);
