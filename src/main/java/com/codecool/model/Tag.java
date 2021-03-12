@@ -1,6 +1,7 @@
 package com.codecool.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -14,8 +15,8 @@ public class Tag {
     @Column(name = "name")
     private String name;
 
-//    @OneToMany(mappedBy = "order")
-//    private Set<ProductBasket> productBaskets;
+    @ManyToMany(mappedBy = "tags")
+    Set<Product> products;
 
     protected Tag() {}
 
@@ -39,16 +40,16 @@ public class Tag {
         this.name = name;
     }
 
-//    public Set<ProductBasket> getProductBaskets() {
-//        return productBaskets;
-//    }
-//
-//    public void setProductBaskets(Set<ProductBasket> productBaskets) {
-//        this.productBaskets = productBaskets;
-//    }
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
     @Override
     public String toString() {
-        return String.format("Order[id=%d, date='%s']", id, name);
+        return String.format("Tag[id=%d, name='%s']", id, name);
     }
 }

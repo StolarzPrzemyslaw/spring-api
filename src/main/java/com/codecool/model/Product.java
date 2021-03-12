@@ -21,6 +21,14 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    @ManyToMany
+    @JoinTable(
+            name = "product_tag",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
+    private Set<Tag> tags;
+
 //    @OneToMany(mappedBy = "product")
 //    private Set<ProductBasket> productBaskets;
 
@@ -64,7 +72,15 @@ public class Product {
         this.category = category;
     }
 
-//    public Set<ProductBasket> getProductBaskets() {
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    //    public Set<ProductBasket> getProductBaskets() {
 //        return productBaskets;
 //    }
 //
