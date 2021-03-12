@@ -35,6 +35,7 @@ public class TagService {
         return tagRepository.findById(id).
                 map(entity -> {
                     entity.setName(updatedTag.getName());
+                    entity.setProducts(updatedTag.getProducts());
                     return tagRepository.save(entity);
                 }).
                 orElseThrow(() -> new EntityNotFoundException(Category.class, id));
