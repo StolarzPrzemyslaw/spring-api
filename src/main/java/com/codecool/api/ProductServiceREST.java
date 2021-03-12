@@ -14,27 +14,27 @@ public class ProductServiceREST {
         this.productService = productService;
     }
 
-    @GetMapping("/api/product")
+    @GetMapping("/api/products")
     List<Product> all() {
         return productService.readAll();
     }
 
-    @PostMapping("/api/product")
+    @PostMapping("/api/products")
     Product newEntity(@RequestBody Product newEntity) {
         return productService.create(newEntity);
     }
 
-    @GetMapping("/api/product/{id}")
+    @GetMapping("/api/products/{id}")
     Product one(@PathVariable Long id) {
         return productService.read(id);
     }
 
-    @PutMapping("/api/product/{id}")
+    @PutMapping("/api/products/{id}")
     Product replaceEntity(@RequestBody Product newEntity, @PathVariable Long id) {
         return productService.update(newEntity, id);
     }
 
-    @DeleteMapping("/api/product/{id}")
+    @DeleteMapping("/api/products/{id}")
     void deleteEntity(@PathVariable Long id) {
         productService.delete(id);
     }
