@@ -34,6 +34,7 @@ public class ProductService {
                     entity.setName(updatedProduct.getName());
                     entity.setPrice(updatedProduct.getPrice());
                     entity.setCategory(updatedProduct.getCategory());
+                    entity.setTags(updatedProduct.getTags());
                     return productRepository.save(entity);
                 }).
                 orElseThrow(() -> new EntityNotFoundException(Product.class, id));
