@@ -64,4 +64,4 @@ ALTER TABLE ONLY product_tag
 
 ALTER TABLE ONLY product_tag
     ADD CONSTRAINT tag_id FOREIGN KEY (tag_id)
-    REFERENCES tags(id) ON DELETE CASCADE;
+    REFERENCES tag(id) ON DELETE CASCADE;
