@@ -1,6 +1,7 @@
 package com.codecool.service;
 
 import com.codecool.exception.EntityNotFoundException;
+import com.codecool.model.Category;
 import com.codecool.model.ProductBasket;
 import com.codecool.repository.ProductBasketRepository;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,10 @@ public class ProductBasketService {
     }
 
     public void delete(Long id) {
-        productBasketRepository.deleteById(id);
+        try {
+            productBasketRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new EntityNotFoundException(ProductBasket.class, id);
+        }
     }
 }

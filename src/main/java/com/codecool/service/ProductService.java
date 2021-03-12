@@ -1,6 +1,7 @@
 package com.codecool.service;
 
 import com.codecool.exception.EntityNotFoundException;
+import com.codecool.model.Category;
 import com.codecool.model.Product;
 import com.codecool.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,10 @@ public class ProductService {
     }
 
     public void delete(Long id){
-        productRepository.deleteById(id);
+        try {
+            productRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new EntityNotFoundException(Product.class, id);
+        }
     }
 }

@@ -42,6 +42,10 @@ public class TagService {
     }
 
     public void delete(Long id){
-        tagRepository.deleteById(id);
+        try {
+            tagRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new EntityNotFoundException(Tag.class, id);
+        }
     }
 }

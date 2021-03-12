@@ -1,6 +1,7 @@
 package com.codecool.service;
 
 import com.codecool.exception.EntityNotFoundException;
+import com.codecool.model.Category;
 import com.codecool.model.Order;
 import com.codecool.repository.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,10 @@ public class OrderService {
     }
 
     public void delete(Long id){
-        orderRepository.deleteById(id);
+        try {
+            orderRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new EntityNotFoundException(Order.class, id);
+        }
     }
 }
