@@ -1,5 +1,7 @@
 package com.codecool.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -14,8 +16,9 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate date;
 
-//    @OneToMany(mappedBy = "order")
-//    private Set<ProductBasket> productBaskets;
+    @OneToMany(mappedBy = "order")
+    @JsonManagedReference
+    private Set<ProductBasket> productBaskets;
 
     protected Order() {}
 
@@ -39,13 +42,13 @@ public class Order {
         this.date = date;
     }
 
-//    public Set<ProductBasket> getProductBaskets() {
-//        return productBaskets;
-//    }
-//
-//    public void setProductBaskets(Set<ProductBasket> productBaskets) {
-//        this.productBaskets = productBaskets;
-//    }
+    public Set<ProductBasket> getProductBaskets() {
+        return productBaskets;
+    }
+
+    public void setProductBaskets(Set<ProductBasket> productBaskets) {
+        this.productBaskets = productBaskets;
+    }
 
     @Override
     public String toString() {

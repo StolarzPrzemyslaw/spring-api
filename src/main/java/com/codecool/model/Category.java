@@ -1,5 +1,7 @@
 package com.codecool.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,9 +15,9 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-//    TODO ask if "one to many" relationship is necessary ?
-//    @OneToMany(mappedBy = "category")
-//    private Set<Product> products;
+    @OneToMany(mappedBy = "category")
+    @JsonManagedReference
+    private Set<Product> products;
 
     protected Category() {}
 
@@ -39,13 +41,13 @@ public class Category {
         this.name = name;
     }
 
-//    public Set<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(Set<Product> products) {
-//        this.products = products;
-//    }
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
     @Override
     public String toString() {
