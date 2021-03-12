@@ -38,6 +38,10 @@ public class CategoryService {
     }
 
     public void delete(Long id){
+        try {
             categoryRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new EntityNotFoundException(Category.class, id);
+        }
     }
 }
