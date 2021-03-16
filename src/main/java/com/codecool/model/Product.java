@@ -1,7 +1,6 @@
 package com.codecool.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,11 +21,9 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonManagedReference
     private Category category;
 
     @ManyToMany
-    @JsonManagedReference
     @JoinTable(
             name = "product_tag",
             joinColumns = {@JoinColumn(name = "product_id")},
@@ -35,7 +32,7 @@ public class Product {
     private Set<Tag> tags;
 
     @OneToMany(mappedBy = "product")
-    @JsonBackReference
+    @JsonIgnore
     private Set<ProductBasket> productBaskets;
 
     protected Product() {}

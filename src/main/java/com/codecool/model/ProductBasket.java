@@ -1,7 +1,6 @@
 package com.codecool.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -17,12 +16,11 @@ public class ProductBasket {
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonManagedReference
     private Product product;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Order order;
 
     protected ProductBasket() {}
